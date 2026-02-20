@@ -1,0 +1,17 @@
+node_modules
+dist
+.git
+.gitignore
+.husky
+.vscode
+.prettierrc
+.prettierignore
+eslint.config.js
+playwright.config.ts
+vitest.config.ts
+tsconfig*.json
+*.md
+e2e
+src/**/*.test.*
+src/**/*.spec.*
+src/test
