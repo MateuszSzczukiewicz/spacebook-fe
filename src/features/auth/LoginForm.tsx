@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 import { loginSchema, type LoginFormData } from './schema'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -14,6 +15,8 @@ import {
 } from '@/components/ui/form'
 
 export function LoginForm() {
+  const { t } = useTranslation('auth')
+
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -29,7 +32,7 @@ export function LoginForm() {
   return (
     <Card className="mx-auto mt-10 w-full max-w-md">
       <CardHeader>
-        <CardTitle>Log in</CardTitle>
+        <CardTitle>{t('login.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -39,21 +42,20 @@ export function LoginForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t('login.email')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="admin@spacebook.com" {...field} />
+                    <Input placeholder={t('login.emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Hasło</FormLabel>
+                  <FormLabel>{t('login.password')}</FormLabel>
                   <FormControl>
                     <Input type="password" {...field} />
                   </FormControl>
@@ -61,9 +63,8 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-
             <Button type="submit" className="w-full">
-              Log in
+              {t('login.submit')}
             </Button>
           </form>
         </Form>
