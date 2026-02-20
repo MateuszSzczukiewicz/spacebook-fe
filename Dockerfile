@@ -9,8 +9,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-FROM nginx:1.27-alpine AS runner
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+FROM caddy:2.9-alpine AS runner
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY --from=builder /app/dist /srv
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
