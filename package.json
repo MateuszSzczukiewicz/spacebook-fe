@@ -14,7 +14,10 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "analyze": "vite build --mode analyze",
-    "prepare": "husky"
+    "prepare": "husky",
+    "container:build": "podman build -t spacebook-fe .",
+    "container:up": "podman compose up --build -d",
+    "container:down": "podman compose down"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
